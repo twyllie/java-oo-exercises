@@ -13,7 +13,7 @@ public class Robot {
 		this.posX = 0;
 		this.posY = 0;
 		this.speed = 5;
-		this.heading = 0;
+		this.heading = 360;
 	}
 	
 	public void move(){
@@ -38,6 +38,10 @@ public class Robot {
 		/**
 		 * Takes a single letter argument for left(l) or right(r), and changes the robot's heading, thusly.
 		 */
+		
+		if (this.heading == 0){
+			this.heading = 360;
+		}
 		
 		if (dir == "r" || dir == "R"){
 			this.heading = (this.heading + 90) % 360;
@@ -73,6 +77,12 @@ public class Robot {
 		 */
 		Robot skynet = new Robot("skynet");
 		Robot terminator = new Robot("terminator");
+		System.out.println(skynet);
+		System.out.println(terminator);
+		skynet.move();
+		terminator.rotate("l");
+		System.out.println(skynet);
+		System.out.println(terminator);
 		
 	}
 }
