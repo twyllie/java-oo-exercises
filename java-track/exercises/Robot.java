@@ -4,16 +4,32 @@ public class Robot {
 *	Excerise: It's Alive! for class 2 prep.
 */	
 	private String name;
-	private int posX, posY;
+	private int x, y;
 	private int speed;
 	private int heading;
 	
-	public Robot(String name){
+	public Robot(String name, int x, int y, int speed, int heading){
 		this.name = name;
-		this.posX = 0;
-		this.posY = 0;
-		this.speed = 5;
-		this.heading = 360;
+		this.x = x;
+		this.y = y;
+		this.speed = speed;
+		this.heading = heading;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+	public int getX(){
+		return this.x;
+	}
+	public int getY(){
+		return this.y;
+	}
+	public int getSpeed(){
+		return this.speed;
+	}
+	public int getHeading(){
+		return this.heading;
 	}
 	
 	public void move(){
@@ -22,15 +38,15 @@ public class Robot {
 		 */
 		
 		switch(this.heading){
-			case 0: this.posY += this.speed;
+			case 0: this.y += this.speed;
 					break;
-			case 90: this.posX += this.speed;
+			case 90: this.x += this.speed;
 					break;
-			case 180: this.posY -= this.speed;
+			case 180: this.y -= this.speed;
 					break;
-			case 270: this.posX -= this.speed;
+			case 270: this.x -= this.speed;
 					break;
-			case 360: this.posY += this.speed;
+			case 360: this.y += this.speed;
 		}
 	}
 	
@@ -58,8 +74,8 @@ public class Robot {
 		int diffX, diffY;
 		double distance;
 		
-		diffX = this.posX - other.posX;
-		diffY = this.posY - other.posY;
+		diffX = this.x - other.getX();
+		diffY = this.y - other.getY();
 		distance = Math.sqrt((diffX*diffX)+(diffY*diffY));
 		return distance;
 	}
@@ -68,21 +84,22 @@ public class Robot {
 		/**
 		 * Returns a string-ified output of the current attributes.
 		 */
-		return "name: "+this.name+" position: ("+this.posX+","+this.posY+") speed: "+this.speed+" heading: "+this.heading;
+		return "name: "+this.name+" position: ("+this.x+","+this.y+") speed: "+this.speed+" heading: "+this.heading;
 	}
 	
-	public static void main(String[] args){
-		/**
-		 * A simple test environment for our Robot.
-		 */
-		Robot skynet = new Robot("skynet");
-		Robot terminator = new Robot("terminator");
-		System.out.println(skynet);
-		System.out.println(terminator);
-		skynet.move();
-		terminator.rotate("l");
-		System.out.println(skynet);
-		System.out.println(terminator);
-		
-	}
+//	public static void main(String[] args){
+//		/**
+//		 * A simple test environment for our Robot.
+//		 */
+//		Robot skynet = new Robot("skynet");
+//		Robot terminator = new Robot("terminator");
+//		System.out.println(skynet);
+//		System.out.println(terminator);
+//		skynet.move();
+//		terminator.rotate("l");
+//		System.out.println(skynet);
+//		System.out.println(terminator);
+//		System.out.println(skynet.distanceToOtherBot(terminator));
+//		
+//	}
 }
