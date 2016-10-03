@@ -1,20 +1,26 @@
 
 public class Robot {
 /** 
-*	Excerise: It's Alive! for class 2 prep.
+*	Class for handling the behaviour of the singularity. Expects an int between 0 and 360.
 */	
 	private String name;
 	private int x, y;
 	private int speed;
 	private int heading;
 	
+	
 	public Robot(String name, int x, int y, int speed, int heading){
 		this.name = name;
 		this.x = x;
 		this.y = y;
 		this.speed = speed;
-		this.heading = heading;
+		if (heading >= 0 && heading <= 360){
+			this.heading = heading;
+		} else{
+			this.heading = 0;
+		}
 	}
+
 	
 	public String getName(){
 		return this.name;
@@ -31,6 +37,7 @@ public class Robot {
 	public int getHeading(){
 		return this.heading;
 	}
+	
 	
 	public void move(){
 		/**
@@ -50,26 +57,27 @@ public class Robot {
 		}
 	}
 	
-	public void rotate(String dir){
+	
+	public void rotate(int rot){
 		/**
-		 * Takes a single letter argument for left(l) or right(r), and changes the robot's heading, thusly.
+		 * Takes a single int argument and rotates the robot by that amount, negative values are allowed.
 		 */
 		
 		if (this.heading == 0){
 			this.heading = 360;
 		}
 		
-		if (dir == "r" || dir == "R"){
+		if (rot >= -360 && rot <= 360){
 			this.heading = (this.heading + 90) % 360;
 		}
 		else{
-			this.heading = (this.heading - 90) % 360;
+			return;
 		}
 	}
 	
-	public double distanceToOtherBot(Robot other){
+	public double distanceToBot(Robot other){
 		/**
-		 * Takes a single argument, another Robot instance, and returns the distance to it as an int.
+		 * Takes a single argument, another Robot instance, and returns the distance to it as a double.
 		 */
 		int diffX, diffY;
 		double distance;
@@ -99,7 +107,7 @@ public class Robot {
 //		terminator.rotate("l");
 //		System.out.println(skynet);
 //		System.out.println(terminator);
-//		System.out.println(skynet.distanceToOtherBot(terminator));
+//		System.out.println(skynet.distanceToBot(terminator));
 //		
 //	}
 }
