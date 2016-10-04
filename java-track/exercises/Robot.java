@@ -68,7 +68,7 @@ public class Robot {
 		}
 		
 		if (rot >= -360 && rot <= 360){
-			this.heading = (this.heading + 90) % 360;
+			this.heading = (this.heading + rot) % 360;
 		}
 		else{
 			return;
