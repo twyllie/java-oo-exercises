@@ -147,7 +147,9 @@ public class StudentAndCourseTest extends TestCase {
 
 
 	// TESTING COURSE CLASS HERE . . . FEEL FREE TO WRITE YOUR OWN, BUT DON'T CHANGE THIS ONE
-	// once again, we are watching you
+	// We're watching you right back, Mr., with your hidden fields needed to make submitGrade work.
+	// I've got my eyes on you!
+	// Don't turn your back, man.
 
 //	@Test
 //	public void testCourseInit() {
