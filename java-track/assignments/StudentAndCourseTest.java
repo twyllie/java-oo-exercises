@@ -74,7 +74,7 @@ public class StudentAndCourseTest extends TestCase {
 			credits += c;
 			gpatotal += g * c;
 			s.submitGrade(g, c);
-			assertEquals("GPA computed incorrectly", gpatotal / credits, s.getGPA(), 0.01);
+			assertEquals("GPA computed incorrectly", gpatotal / credits, s.getGPA(), 0.01); //Checks for equality within a "positive delta." That is, as long as it is not more than 0.01 off of their expected result it counts as equal. I think, lol.
 			assertTrue("GPA not rounded", (s.getGPA() + "").length() < 6);
 		}
 	}
@@ -84,14 +84,17 @@ public class StudentAndCourseTest extends TestCase {
 		Student s = new Student("D", "S", 1);
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
+			System.out.println("Test: "+(i+1) * 1333.33);
 			assertEquals("Compute tution not working properly", (i+1) * 1333.33, s.computeTuition());
 		}
 
 		s.submitGrade(0, 1);
+		System.out.println("Test: "+ 20000.0);
 		assertEquals("Compute tution not working properly", 20000.0, s.computeTuition());
 
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
+			System.out.println("Test: "+ 1333.33 * (i+1) + 20000.0);
 			assertEquals("Compute tution not working properly", 1333.33 * (i+1) + 20000.0, s.computeTuition());
 		}
 	}
@@ -125,7 +128,6 @@ public class StudentAndCourseTest extends TestCase {
 			assertEquals("createBaby should not alter the parents", a2 + " " + b2, ss.getName());
 			assertEquals("createBaby should not alter the parents", g2, ss.getGPA());
 			assertEquals("createBaby should not alter the parents", c2, ss.getCredits());
-
 		}
 	}
 

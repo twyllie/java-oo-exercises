@@ -10,7 +10,7 @@ public class Student{
 	private int	id;
 	private int credits;
 	private double gpa;
-	private double quality;
+	private double qualityScore;
 	
 	//CONSTRUCTORS
 	public Student(String first, String last, int id){
@@ -19,7 +19,7 @@ public class Student{
 		this.id = id;
 		this.credits = 0;
 		this.gpa = 0;
-		this.quality = this.credits * this.gpa;
+		this.qualityScore = this.credits * this.gpa;
 	}
 	public Student(String first, String last, int id, int credits, double gpa){
 		this.firstName = first;
@@ -27,7 +27,7 @@ public class Student{
 		this.id = id;
 		this.credits = credits;
 		this.gpa = gpa;
-		this.quality = this.credits * this.gpa;
+		this.qualityScore = this.credits * this.gpa;
 	}
 	
 	
@@ -61,23 +61,75 @@ public class Student{
 			return "Senior";
 		}
 	}
+	
+	//TODO: FIX ROUNDING
 	public void submitGrade(double courseGrade, int courseCredit){
-		double tempgpa;
+		double gpa;
 		int temp;
-		this.quality += courseGrade * courseCredit;
-		tempgpa = this.quality/this.credits;
-		temp = (int)(tempgpa*1000);
-		tempgpa = temp/1000;
-		gpa = tempgpa;
+		this.credits += courseCredit;
+		this.qualityScore += (courseGrade * courseCredit);
+		gpa = this.qualityScore/this.credits;
+		temp = (int)(gpa * 1000);
+		gpa = temp/1000.0;
+		this.gpa = gpa;
 	}
+	
+	//TODO: FIX ROUNDING
 	public double computeTuition(){
-		
+		double amnt;
+		amnt = 0;
+		int temp;
+		//Below 15 credits
+		if (this.credits > 15){
+			amnt = (this.credits*(20000.0/15));
+			temp = (int)(amnt*100.0);
+			amnt = temp/100.0;
+			System.out.println(amnt);
+			return amnt;
+		}
+		//Nominal semester
+		else if (this.credits == 15){
+			amnt += 20000.0;
+			System.out.println(amnt);
+			return amnt;
+		}
+		//More than 15 credits
+		else{
+			int credits = this.credits;
+			amnt += 20000.0;
+			credits -= 15;
+			amnt += (credits*(20000.0/15));
+			temp = (int)(amnt*100.0);
+			amnt = temp/100.0;
+			System.out.println(amnt);
+			return amnt;
+		}
 	}
-	public void createLegacy(Student other){
+	public Student createLegacy(Student p1, Student p2){
+		String bbFirst, bbLast;
+		int bbID;
+		double bbGPA;
+		int bbCredits;
 		
+		bbFirst = p1.getName();
+		bbLast = p2.getName();
+		bbID = p1.getStudentID() + p2.getStudentID();
+		
+		
+		//TODO: FIX ROUNDING
+		bbGPA = (p1.getGPA() + p2.getGPA())/2;
+		
+		if (p1.getCredits() > p2.getCredits()){
+			bbCredits = p1.getCredits();
+		}else if (p1.getCredits() < p2.getCredits()){
+			bbCredits = p2.getCredits();
+		}else{
+			bbCredits = p1.getCredits();
+		}
+		return new Student(bbFirst, bbLast, bbID, bbCredits, bbGPA);
 	}
 	public String toString(){
-		return "";
+		return "Student: " + this.firstName + " " + this.lastName + " ID: " + this.id;
 	}
 	
 	
