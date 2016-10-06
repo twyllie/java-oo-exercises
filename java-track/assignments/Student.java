@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 
 public class Student{
 	/**
@@ -64,26 +65,31 @@ public class Student{
 	
 	//TODO: FIX ROUNDING
 	public void submitGrade(double courseGrade, int courseCredit){
+		DecimalFormat df = new DecimalFormat("#.###");
 		double gpa;
-		int temp;
+		String temp;
+//		int temp;
 		this.credits += courseCredit;
 		this.qualityScore += (courseGrade * courseCredit);
 		gpa = this.qualityScore/this.credits;
-		temp = (int)(gpa * 1000);
-		gpa = temp/1000.0;
+		temp = df.format(gpa);
+		gpa = Double.parseDouble(temp);
+//		temp = (int)(gpa * 1000);
+//		gpa = temp/1000.0;
 		this.gpa = gpa;
 	}
 	
 	//TODO: FIX ROUNDING
 	public double computeTuition(){
+		DecimalFormat df = new DecimalFormat("#.##");
 		double amnt;
+		String temp;
 		amnt = 0;
-		int temp;
 		//Below 15 credits
 		if (this.credits > 15){
-			amnt = (this.credits*(20000.0/15));
-			temp = (int)(amnt*100.0);
-			amnt = temp/100.0;
+			amnt = (this.credits*1333.33);
+			temp = df.format(amnt);
+			amnt = Double.parseDouble(temp);
 			System.out.println(amnt);
 			return amnt;
 		}
@@ -98,9 +104,9 @@ public class Student{
 			int credits = this.credits;
 			amnt += 20000.0;
 			credits -= 15;
-			amnt += (credits*(20000.0/15));
-			temp = (int)(amnt*100.0);
-			amnt = temp/100.0;
+			amnt += (credits*1333.33);
+			temp = df.format(amnt);
+			amnt = Double.parseDouble(temp);
 			System.out.println(amnt);
 			return amnt;
 		}
