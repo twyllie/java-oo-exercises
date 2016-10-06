@@ -63,7 +63,7 @@ public class Student{
 		}
 	}
 	
-	//TODO: FIX ROUNDING
+
 	public void submitGrade(double courseGrade, int courseCredit){
 		DecimalFormat df = new DecimalFormat("#.###");
 		double gpa;
@@ -79,18 +79,18 @@ public class Student{
 		this.gpa = gpa;
 	}
 	
-	//TODO: FIX ROUNDING
 	public double computeTuition(){
-		DecimalFormat df = new DecimalFormat("#.##");
+		double amnt = ((this.credits/15)*20000)+((this.credits%15)*1333.33);		
+		return amnt;
+
+/*
+		The dark ages of solving this problem, lol. Let it forever stand here as a warning to the unwary.
+		
 		double amnt;
-		String temp;
 		amnt = 0;
 		//Below 15 credits
-		if (this.credits > 15){
+		if (this.credits < 15){
 			amnt = (this.credits*1333.33);
-			temp = df.format(amnt);
-			amnt = Double.parseDouble(temp);
-			System.out.println(amnt);
 			return amnt;
 		}
 		//Nominal semester
@@ -105,11 +105,8 @@ public class Student{
 			amnt += 20000.0;
 			credits -= 15;
 			amnt += (credits*1333.33);
-			temp = df.format(amnt);
-			amnt = Double.parseDouble(temp);
-			System.out.println(amnt);
 			return amnt;
-		}
+		}*/
 	}
 	public Student createLegacy(Student p1, Student p2){
 		String bbFirst, bbLast;
@@ -122,7 +119,6 @@ public class Student{
 		bbID = p1.getStudentID() + p2.getStudentID();
 		
 		
-		//TODO: FIX ROUNDING
 		bbGPA = (p1.getGPA() + p2.getGPA())/2;
 		
 		if (p1.getCredits() > p2.getCredits()){

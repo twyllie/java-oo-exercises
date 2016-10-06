@@ -84,17 +84,14 @@ public class StudentAndCourseTest extends TestCase {
 		Student s = new Student("D", "S", 1);
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
-			System.out.println("Test: "+(i+1) * 1333.33);
 			assertEquals("Compute tution not working properly", (i+1) * 1333.33, s.computeTuition());
 		}
 
 		s.submitGrade(0, 1);
-		System.out.println("Test: "+ 20000.0);
 		assertEquals("Compute tution not working properly", 20000.0, s.computeTuition());
 
 		for (int i = 0; i < 14; i++) {
 			s.submitGrade(0, 1);
-			System.out.println("Test: "+ 1333.33 * (i+1) + 20000.0);
 			assertEquals("Compute tution not working properly", 1333.33 * (i+1) + 20000.0, s.computeTuition());
 		}
 	}
@@ -149,7 +146,7 @@ public class StudentAndCourseTest extends TestCase {
 
 
 	// TESTING COURSE CLASS HERE . . . FEEL FREE TO WRITE YOUR OWN, BUT DON'T CHANGE THIS ONE
-	// We're watching you right back, Mr., with your hidden fields needed to make submitGrade work.
+	// We're watching you right back, person, with your hidden fields needed to make submitGrade work.
 	// I've got my eyes on you!
 	// Don't turn your back, man.
 
@@ -184,7 +181,7 @@ public class StudentAndCourseTest extends TestCase {
 
 				assertEquals("seats not updated after adding a student", s - j - 1, c.getRemainingSeats());
 			}
-
+			
 			//Try to add students, even though the class is full.
 			for (int j = 0; j < s; j++) {
 				String aa =  "" + (Math.random() * 5000);
