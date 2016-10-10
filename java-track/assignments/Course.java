@@ -25,6 +25,7 @@ public class Course{
 		if(this.seatsLeft <= 0){
 			return false;
 		}
+		
 		for(int i = 0; i < roster.length; i++){
 			if(roster[i] instanceof Student){
 				if(st.getName() == roster[i].getName()){
@@ -36,6 +37,7 @@ public class Course{
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	public String generateRoster(){
