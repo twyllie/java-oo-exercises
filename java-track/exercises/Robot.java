@@ -1,12 +1,12 @@
 
 public class Robot {
 /** 
-*	Class for handling the behaviour of the singularity. Expects an int between 0 and 360.
+*	Class for handling the behavior of the singularity. Expects an int between 0 and 360.
 */	
 	private String name;
-	private int x, y;
-	private int speed;
-	private int heading;
+	protected int x, y;
+	protected int speed;
+	protected int heading;
 	
 	
 	public Robot(String name, int x, int y, int speed, int heading){
