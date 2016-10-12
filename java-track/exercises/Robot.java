@@ -1,8 +1,6 @@
 
 public class Robot {
-/** 
-*	Class for handling the behavior of the singularity. Expects an int between 0 and 360.
-*/	
+
 	private String name;
 	protected int x, y;
 	protected int speed;
@@ -88,6 +86,10 @@ public class Robot {
 		return distance;
 	}
 	
+	public void setBehavior(RobotBehavior mood){
+		
+	}
+	
 	public String toString(){
 		/**
 		 * Returns a string-ified output of the current attributes.
@@ -95,19 +97,4 @@ public class Robot {
 		return "name: "+this.name+" position: ("+this.x+","+this.y+") speed: "+this.speed+" heading: "+this.heading;
 	}
 	
-//	public static void main(String[] args){
-//		/**
-//		 * A simple test environment for our Robot.
-//		 */
-//		Robot skynet = new Robot("skynet");
-//		Robot terminator = new Robot("terminator");
-//		System.out.println(skynet);
-//		System.out.println(terminator);
-//		skynet.move();
-//		terminator.rotate("l");
-//		System.out.println(skynet);
-//		System.out.println(terminator);
-//		System.out.println(skynet.distanceToBot(terminator));
-//		
-//	}
 }
