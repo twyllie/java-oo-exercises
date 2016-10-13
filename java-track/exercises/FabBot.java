@@ -7,9 +7,9 @@ public class FabBot extends Robot{
 	}
 	
 	public Furniture fabricate(){
-		Furniture art = new Furniture();
+		Furniture art = new Furniture(this.x, this.y);
 		System.out.println("FabBot, " + this.getName() + ", made " + art);
-		return art;		
+		return art;
 	}
 	
 	public void recieveCriticism(){

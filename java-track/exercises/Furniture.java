@@ -4,8 +4,10 @@ public class Furniture {
 	private String type;
 	private int height;
 	private int width;
+	private int x;
+	private int y;
 	
-	public Furniture(){
+	public Furniture(int x, int y){
 		int selector = (int)((Math.random() * 5) + 1);
 		
 		switch(selector){
@@ -21,6 +23,7 @@ public class Furniture {
 			break;
 		default: this.type = "Failure";
 		}
+		
 		if(this.type != "Failure"){
 			this.height = (int)((Math.random() * 100) + 1);
 		}else{
@@ -32,6 +35,24 @@ public class Furniture {
 		}else{
 			this.width = (int)((Math.random() * 3) + 1);
 		}
+		this.x = x;
+		this.y = y;
+	}
+	
+	public String getType(){
+		return this.type;
+	}
+	public int getHeight(){
+		return this.height;
+	}
+	public int getWidth(){
+		return this.width;
+	}
+	public int getX(){
+		return this.x;
+	}
+	public int getY(){
+		return this.y;
 	}
 	
 	public String toString(){

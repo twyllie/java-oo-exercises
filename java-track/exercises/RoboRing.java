@@ -8,9 +8,11 @@ public class RoboRing {
 		 */
 		Robot aesop = new StoryBot("Aesop", 12, 12, 12, 360);
 		Robot davinci = new FabBot("Da Vinci", 46, 92, 10, 270);
+		StoryTeller fables = new StoryTeller(aesop);
+		Builder opus = new Builder(davinci);
+		
 		do{
-			boolean aesopB, davinciB;
-			aesopB = aesop.setBehavior(mood);			
+			
 		}while(aesopB == false && davinciB == false);
 	}
 
