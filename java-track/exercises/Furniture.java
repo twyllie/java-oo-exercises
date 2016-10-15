@@ -56,6 +56,6 @@ public class Furniture {
 	}
 	
 	public String toString(){
-		return "A "+this.type+" "+this.height+" high, and "+this.width+" wide.";
+		return "a "+this.type+" "+this.height+"in. high, and "+this.width+"in. wide. At (" + this.x + ", " + this.y + ").";
 	}
 }

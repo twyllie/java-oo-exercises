@@ -1,5 +1,5 @@
 
-public class StoryTeller implements RobotBehavior {
+public class StoryTeller{
 	
 	
 	public boolean doNextMove(StoryBot storybot, Robot[] others){

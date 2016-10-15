@@ -16,8 +16,8 @@ public class RoboRing {
 		s2 = (int)(Math.random() * 10)+ 1; //Random value, 1-10
 		
 		//initializing objects
-		Robot aesop = new StoryBot("Aesop", x1, y1, s1, 360);
-		Robot davinci = new FabBot("Da Vinci", x2, y2, s2, 360);
+		StoryBot aesop = new StoryBot("Aesop", x1, y1, s1, 360);
+		FabBot davinci = new FabBot("Da Vinci", x2, y2, s2, 360);
 		StoryTeller fables = new StoryTeller();
 		Builder opus = new Builder();
 		Robot[] others = new Robot[2];
