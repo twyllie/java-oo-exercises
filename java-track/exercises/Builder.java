@@ -10,11 +10,13 @@ public class Builder implements RobotBehavior{
 	}
 	
 	
-	public boolean doNextMove(FabBot fabbot){
+	public boolean doNextMove(FabBot fabbot, Robot[] others){
 		Furniture art;
 		art = fabbot.fabricate();
 		boolean contains = false;
 		boolean spotTaken = false;
+		int full = 0;
+		boolean finished = false;
 		
 		//Checks to make sure that the new furniture is not already built, or in the same spot as another.
 		for(int i=0; i < this.made.length; i++){
@@ -33,7 +35,12 @@ public class Builder implements RobotBehavior{
 					this.made[i] = art;
 				}else if(this.made[i].getType() != art.getType()){
 					this.made[i] = art;
+				}else{
+					full++;
 				}
+			}
+			if(full == 5){
+				finished = true;
 			}
 		}
 		
@@ -51,6 +58,11 @@ public class Builder implements RobotBehavior{
 			fabbot.move();		
 		}
 		
-		
+		//Check to see if FabBot met its goal.
+		if(finished == true){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }

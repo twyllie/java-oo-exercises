@@ -32,4 +32,8 @@ public class StoryBot extends Robot{
 		
 		return story;
 	}
+	
+	public void recieveCriticism(){
+		System.out.println("Yeah, well, I'm not very good.");
+	}
 }

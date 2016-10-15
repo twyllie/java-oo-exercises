@@ -11,8 +11,4 @@ public class FabBot extends Robot{
 		System.out.println("FabBot, " + this.getName() + ", made " + art);
 		return art;
 	}
-	
-	public void recieveCriticism(){
-		System.out.println("Yeah, well, I'm not very good.");
-	}
 }
