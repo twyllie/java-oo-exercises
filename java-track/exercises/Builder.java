@@ -10,7 +10,7 @@ public class Builder implements RobotBehavior{
 	}
 	
 	
-	public void doNextMove(FabBot fabbot){
+	public boolean doNextMove(FabBot fabbot){
 		Furniture art;
 		art = fabbot.fabricate();
 		boolean contains = false;
@@ -36,5 +36,21 @@ public class Builder implements RobotBehavior{
 				}
 			}
 		}
+		
+		//Randomly decide whether or not to rotate, and if so which direction.
+		if((int)(Math.random()*1)+1 == 1){
+			if((int)(Math.random()*1)+1 == 1){
+				fabbot.rotate(90);
+			}else{
+				fabbot.rotate(-90);
+			}
+		}
+			
+		//Randomly decide to move or not.
+		if((int)(Math.random()*1)+1 == 1){
+			fabbot.move();		
+		}
+		
+		
 	}
 }

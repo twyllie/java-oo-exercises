@@ -1,4 +1,4 @@
 
 public interface RobotBehavior {
-	public void doNextMove(Robot rob);
+	public boolean doNextMove(Robot rob);
 }
