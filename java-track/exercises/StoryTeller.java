@@ -1,7 +1,7 @@
 
-public class StoryTeller{
+public class StoryTeller implements RobotBehavior{
 	
-	
+	@Override
 	public boolean doNextMove(StoryBot storybot, Robot[] others){
 		
 		boolean hasMoved = false;

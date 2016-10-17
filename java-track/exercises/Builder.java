@@ -1,5 +1,5 @@
 
-public class Builder{
+public class Builder implements RobotBehavior{
 	
 	//Builder's goal is to build a house, he must first have built all 5 different pieces of furniture, in different locations.
 	
@@ -9,7 +9,7 @@ public class Builder{
 		made = new Furniture[5];
 	}
 	
-	
+	@Override
 	public boolean doNextMove(FabBot fabbot, Robot[] others){
 		Furniture art;
 		art = fabbot.fabricate();
