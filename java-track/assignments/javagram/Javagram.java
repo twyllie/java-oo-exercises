@@ -3,13 +3,23 @@ package javagram;
 import javagram.filters.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Scanner;
 
 public class Javagram {
+	
+	private static ArrayList<Filter> filters = new ArrayList<Filter>();
+	
+	private static void addFilter(Filter filter){
+		filters.add(filter);
+	}
+	
 
 	public static void main(String[] args) {
-
+		addFilter(new BlueFilter());
+		
 		// Create the base path for images		
 		String[] baseParts = {System.getProperty("user.dir"), "images"};
 		String dir = String.join(File.separator, baseParts);
@@ -41,8 +51,21 @@ public class Javagram {
 		
 		// TODO - prompt user for filter and validate input
 		
-		// TODO - pass filter ID int to getFilter, and get an instance of Filter back 
-		BlueFilter filter = getFilter();			
+		int input = displayFilterMenu(in);
+		
+		
+		// TODO - pass filter ID int to getFilter, and get an instance of Filter back
+		Filter filter;
+		boolean valid = false;
+		do{
+			try{
+				filter = getFilter(input);
+				valid = true;
+			}
+			catch(){
+				System.out.println(input + " was not a valid selection.");
+			}
+		}while(valid == false);
 
 		// filter and display image
 		Picture processed = filter.process(picture);
@@ -71,11 +94,31 @@ public class Javagram {
 	
 	// TODO - refactor this method to accept an int parameter, and return an instance of the Filter interface
 	// TODO - refactor this method to thrown an exception if the int doesn't correspond to a filter
-	private static BlueFilter getFilter() {
+	private static Filter getFilter(int input) {
 		
 		// TODO - create some more filters, and add logic to return the appropriate one
 		return new BlueFilter();
 		
+	}
+	
+	private static int displayFilterMenu(Scanner in){
+		boolean valid = false;
+		int input = 0;
+		do{
+			try{
+				for(int i = 0; i < filters.size(); i++){
+					System.out.println((i+1) + filters.get(i).getTitle());
+					System.out.println("    "+filters.get(i).getDesc());
+				}
+				System.out.println("Please select a filter to use:\n");
+				input = in.nextInt();
+				valid = true;
+			}
+			catch(RuntimeException error){
+				System.out.println("You did not enter an integer.");
+			}
+		}while(valid == false);
+		return input;
 	}
 
 }
