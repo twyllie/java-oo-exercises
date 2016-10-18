@@ -55,14 +55,14 @@ public class Javagram {
 		
 		
 		// TODO - pass filter ID int to getFilter, and get an instance of Filter back
-		Filter filter;
+		Filter filter = null;
 		boolean valid = false;
 		do{
 			try{
 				filter = getFilter(input);
 				valid = true;
 			}
-			catch(){
+			catch(IndexOutOfBoundsException error){
 				System.out.println(input + " was not a valid selection.");
 			}
 		}while(valid == false);
@@ -95,10 +95,8 @@ public class Javagram {
 	// TODO - refactor this method to accept an int parameter, and return an instance of the Filter interface
 	// TODO - refactor this method to thrown an exception if the int doesn't correspond to a filter
 	private static Filter getFilter(int input) {
-		
-		// TODO - create some more filters, and add logic to return the appropriate one
-		return new BlueFilter();
-		
+		int index = input - 1;
+		return filters.get(index);	
 	}
 	
 	private static int displayFilterMenu(Scanner in){
@@ -108,7 +106,7 @@ public class Javagram {
 			try{
 				for(int i = 0; i < filters.size(); i++){
 					System.out.println((i+1) + filters.get(i).getTitle());
-					System.out.println("    "+filters.get(i).getDesc());
+					System.out.println("    Effect: "+filters.get(i).getDesc());
 				}
 				System.out.println("Please select a filter to use:\n");
 				input = in.nextInt();
