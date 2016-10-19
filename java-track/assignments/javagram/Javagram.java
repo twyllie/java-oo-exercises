@@ -18,7 +18,10 @@ public class Javagram {
 	
 
 	public static void main(String[] args) {
+		
+		// Build ArrayList of available filters. Sadly hardcoded :(
 		addFilter(new BlueFilter());
+		addFilter(new InvertFilter());
 		
 		// Create the base path for images		
 		String[] baseParts = {System.getProperty("user.dir"), "images"};
@@ -49,21 +52,17 @@ public class Javagram {
 			
 		} while(picture == null);
 		
-		// TODO - prompt user for filter and validate input
-		
-		int input = displayFilterMenu(in);
-		
-		
-		// TODO - pass filter ID int to getFilter, and get an instance of Filter back
+		//  prompt user for filter and validate input
 		Filter filter = null;
 		boolean valid = false;
 		do{
 			try{
+				int input = displayFilterMenu(in);
 				filter = getFilter(input);
 				valid = true;
 			}
 			catch(IndexOutOfBoundsException error){
-				System.out.println(input + " was not a valid selection.");
+				System.out.println("That was not a valid selection.");
 			}
 		}while(valid == false);
 
@@ -92,30 +91,18 @@ public class Javagram {
 		in.close();
 	}
 	
-	// TODO - refactor this method to accept an int parameter, and return an instance of the Filter interface
-	// TODO - refactor this method to thrown an exception if the int doesn't correspond to a filter
 	private static Filter getFilter(int input) {
 		int index = input - 1;
 		return filters.get(index);	
 	}
 	
 	private static int displayFilterMenu(Scanner in){
-		boolean valid = false;
-		int input = 0;
-		do{
-			try{
-				for(int i = 0; i < filters.size(); i++){
-					System.out.println((i+1) + filters.get(i).getTitle());
-					System.out.println("    Effect: "+filters.get(i).getDesc());
-				}
-				System.out.println("Please select a filter to use:\n");
-				input = in.nextInt();
-				valid = true;
-			}
-			catch(RuntimeException error){
-				System.out.println("You did not enter an integer.");
-			}
-		}while(valid == false);
+		System.out.println("Please select a filter to use:");
+		for(int i = 0; i < filters.size(); i++){
+			System.out.println((i+1) + "- " + filters.get(i).getTitle());
+			System.out.println("    Effect: "+filters.get(i).getDesc());
+		}
+		int input = in.nextInt();
 		return input;
 	}
 
