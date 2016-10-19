@@ -22,6 +22,7 @@ public class Javagram {
 		// Build ArrayList of available filters. Sadly hardcoded :(
 		addFilter(new BlueFilter());
 		addFilter(new InvertFilter());
+		addFilter(new GrayscaleFilter());
 		
 		// Create the base path for images		
 		String[] baseParts = {System.getProperty("user.dir"), "images"};
