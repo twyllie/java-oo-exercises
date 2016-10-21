@@ -25,15 +25,16 @@ public class Javagram {
 		
 		// Create the base path for images		
 		String[] baseParts = {System.getProperty("user.dir"), "images"};
+		String opened = "";
 		String dir = String.join(File.separator, baseParts);
 		String relPath;
 		Picture picture = null;
 		Scanner in = new Scanner(System.in);
 		
 		// prompt user for image to filter and validate input
+		String imagePath = "path not set";
 		do {
 			
-			String imagePath = "path not set";
 			
 			// try to open the file
 			try {
@@ -42,6 +43,7 @@ public class Javagram {
 				relPath = in.next();
 				
 				String[] relPathParts = relPath.split(File.separator);
+				opened = relPathParts[relPathParts.length -1];
 				imagePath = dir + File.separator + String.join(File.separator, Arrays.asList(relPathParts));
 				
 				picture = new Picture(imagePath);
@@ -73,19 +75,39 @@ public class Javagram {
 		System.out.println("Image successfully filtered");
 		
 		// save image, if desired
-		
-		System.out.println("Save image to (relative to " + dir + ") (type 'exit' to quit w/o saving):");
-		String fileName = in.next();
-		
-		// TODO - if the user enters the same file name as the input file, confirm that they want to overwrite the original
-		
-		if (fileName.equals("exit")) {
-			System.out.println("Image not saved");
-		} else {
-			String absFileName = dir + File.separator + fileName;
-			processed.save(absFileName);
-			System.out.println("Image saved to " + absFileName);
-		}	
+		boolean unsure = false;
+		do{
+			unsure = false;
+			System.out.println("Save image to (relative to " + dir + ") (type 'exit' to quit w/o saving):");
+			String fileName = in.next();
+			
+			// TODO - if the user enters the same file name as the input file, confirm that they want to overwrite the original
+			
+			if (fileName.equals("exit")) {
+				System.out.println("Image not saved");
+			} 
+			
+			else if(fileName.equals(opened)||fileName.equals(imagePath)) {
+				System.out.println("This will save over the current file. Are you sure?\nPlease enter 'y' or 'n'");
+				String sure = in.next();
+				
+				if (sure == "y" || sure == "Y"){
+					System.out.println("The original file has been overwritten");
+				}
+				
+				else {
+					System.out.println("Please enter a different file name");
+					unsure = true;
+				}
+				
+			} 
+			
+			else {
+				String absFileName = dir + File.separator + fileName;
+				processed.save(absFileName);
+				System.out.println("Image saved to " + absFileName);
+			}
+		}while(unsure == true);
 		
 		// close input scanner
 		in.close();
@@ -100,7 +122,7 @@ public class Javagram {
 		System.out.println("Please select a filter to use:");
 		for(int i = 0; i < filters.size(); i++){
 			System.out.println((i+1) + "- " + filters.get(i).getTitle());
-			System.out.println("    Effect: "+filters.get(i).getDesc());
+			System.out.println("    Effect: " + filters.get(i).getDesc());
 		}
 		int input = in.nextInt();
 		return input;
