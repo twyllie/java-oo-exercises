@@ -27,7 +27,7 @@ public class Javagram {
 		String[] baseParts = {System.getProperty("user.dir"), "images"};
 		String opened = "";
 		String dir = String.join(File.separator, baseParts);
-		String relPath;
+		String relPath = "";
 		Picture picture = null;
 		Scanner in = new Scanner(System.in);
 		
@@ -87,7 +87,7 @@ public class Javagram {
 				System.out.println("Image not saved");
 			} 
 			
-			else if(fileName.equals(opened)||fileName.equals(imagePath)) {
+			else if(fileName.equals(opened)||fileName.equals(relPath)) {
 				System.out.println("This will save over the current file. Are you sure?\nPlease enter 'y' or 'n'");
 				String sure = in.next();
 				
