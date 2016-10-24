@@ -5,6 +5,7 @@ import javagram.filters.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Javagram {
@@ -57,16 +58,23 @@ public class Javagram {
 		//  prompt user for filter and validate input
 		Filter filter = null;
 		boolean valid = false;
+		int input = 0;
 		do{
 			try{
-				int input = displayFilterMenu(in);
+				input = displayFilterMenu(in);
 				filter = getFilter(input);
 				valid = true;
 			}
 			catch(IndexOutOfBoundsException error){
 				System.out.println("That was not a valid selection.");
+				valid = false;
 			}
-		}while(valid == false);
+			catch(InputMismatchException error){
+				System.out.println("You have not entered a valid integer. Please enter only an integer.");
+				valid = false;
+				in.next();
+			}
+		}while(!valid);
 
 		// filter and display image
 		Picture processed = filter.process(picture);
