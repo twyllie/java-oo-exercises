@@ -46,7 +46,7 @@ public class Javagram {
 				String[] relPathParts = relPath.split(File.separator);
 				opened = relPathParts[relPathParts.length -1];
 				imagePath = dir + File.separator + String.join(File.separator, Arrays.asList(relPathParts));
-				
+
 				picture = new Picture(imagePath);
 				
 			} catch (RuntimeException e) {
